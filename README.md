@@ -1,4 +1,4 @@
-# gorton-sd/router
+# gortonsd/router
 
 PHP Router Library
 
@@ -33,9 +33,11 @@ class ExampleController {
 
 ## Usage
 ```php
-require 'src/Router2.php';
+require_once 'vendor/autoload.php';
 
-$router = new gorton/Router();
+use GortonSd\Router\Router;
+
+$router = new Router();
 $router->loadControllers(3600); // Optional: set minimum cache age to 1 hour (3600 seconds)
 $router->run($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
 ```
@@ -46,7 +48,14 @@ $router->run($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
 - You can adjust the minimum cache age by passing a value (in seconds) to `loadControllers()`.
 
 ## Installation
-Copy the `src/Router.php` file and your controllers into your project. Require `Router.php` as needed.
+
+### Via Composer (Recommended)
+```bash
+composer require gortonsd/router
+```
+
+### Manual Installation
+Copy the `src/Router.php` file and your controllers into your project. Use Composer's autoload or require the files manually.
 
 ## License
 MIT
