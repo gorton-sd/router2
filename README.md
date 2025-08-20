@@ -35,7 +35,7 @@ class ExampleController {
 ```php
 require_once 'vendor/autoload.php';
 
-use GortonSd\Router\Router;
+use gortonsd\Router\Router;
 
 $router = new Router();
 $router->loadControllers(3600); // Optional: set minimum cache age to 1 hour (3600 seconds)
