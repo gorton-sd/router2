@@ -32,7 +32,7 @@ namespace gorton-sd\Router;
 class Router2 {
     private $routes = [];
     private $controllerFolder;
-    private $cacheFile = __DIR__ . '/../routes.cache';
+    private $cacheFile = __DIR__ . '/routes.cache';
 
     public function __construct($controllerFolder = __DIR__ . '/controllers') {
         $this->controllerFolder = $controllerFolder;
