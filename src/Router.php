@@ -104,13 +104,24 @@ class Router {
         return false;
     }
 
-    public function run($method, $uri) {
-        $method = strtoupper($method);
+    /**
+     * Runs the router using the current HTTP request method and URI.
+     */
+    public function run() {
+        $method = isset($_SERVER['REQUEST_METHOD']) ? strtoupper($_SERVER['REQUEST_METHOD']) : 'GET';
+        $uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
+        $uri = parse_url($uri, PHP_URL_PATH); // Remove query string
+        $uri = rtrim($uri, '/');
+        if ($uri === '') {
+            $uri = '/';
+        }
+
         if (isset($this->routes[$method][$uri])) {
             $className = $this->routes[$method][$uri];
             $controller = new $className();
-            if (method_exists($controller, strtolower($method))) {
-                return $controller->{strtolower($method)}();
+            $action = strtolower($method);
+            if (method_exists($controller, $action)) {
+                return $controller->$action();
             }
         }
         http_response_code(404);
