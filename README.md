@@ -35,9 +35,9 @@ class ExampleController {
 ```php
 require 'src/Router2.php';
 
-$router2 = new Router2();
-$router2->loadControllers(3600); // Optional: set minimum cache age to 1 hour (3600 seconds)
-$router2->run($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
+$router = new gorton/Router();
+$router->loadControllers(3600); // Optional: set minimum cache age to 1 hour (3600 seconds)
+$router->run($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
 ```
 
 ## Route Caching
@@ -46,7 +46,7 @@ $router2->run($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
 - You can adjust the minimum cache age by passing a value (in seconds) to `loadControllers()`.
 
 ## Installation
-Copy the `src/Router2.php` file and your controllers into your project. Require `Router2.php` as needed.
+Copy the `src/Router.php` file and your controllers into your project. Require `Router.php` as needed.
 
 ## License
 MIT
