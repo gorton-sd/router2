@@ -1,9 +1,9 @@
-# gorton-sd/router2
+# gorton-sd/router
 
 PHP Router Library
 
 ## Overview
-Router2 is a lightweight PHP router class that automatically discovers controllers, registers routes using docblock annotations, and caches routes for fast lookup. Designed for easy integration into your own projects or for use by other developers.
+Router is a lightweight PHP router class that automatically discovers controllers, registers routes using docblock annotations, and caches routes for fast lookup. Designed for easy integration into your own projects or for use by other developers.
 
 ## Features
 - Automatic controller discovery in a specified folder
