@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Router2 - PHP Router Library
  *
@@ -25,6 +26,8 @@
  *   $router2->loadControllers(); // optional, refreshes or uses cache
  *   $router2->run($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
  */
+
+namespace gorton-sd\Router;
 
 class Router2 {
     private $routes = [];
