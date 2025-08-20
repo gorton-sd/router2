@@ -54,19 +54,33 @@ class Router {
         if (!$cacheValid || $this->controllersChanged($minCacheAge)) {
             $this->routes = [];
             foreach (glob($this->controllerFolder . '/*.php') as $file) {
-                require_once $file;
+                //require_once $file;
+                $contents = file_get_contents($file);
+                $namespace = '';
+                if (preg_match('/namespace\s+([^;]+);/', $contents, $nsMatches)) {
+                    $namespace = trim($nsMatches[1]);
+                }
+
                 $className = basename($file, '.php');
-                if (class_exists($className)) {
-                    $reflection = new ReflectionClass($className);
+                $fqcn = $namespace ? $namespace . '\\' . $className : $className;
+                echo($fqcn."\r\n");
+                if (class_exists($fqcn)) {
+                    echo("class found");
+                    $reflection = new \ReflectionClass($fqcn);
                     $doc = $reflection->getDocComment();
+                    echo($doc."\r\n");
                     if ($doc && preg_match('/@url\s+(\S+)/', $doc, $matches)) {
                         $url = $matches[1];
+                        echo($url);
                         foreach (["get", "post"] as $method) {
                             if ($reflection->hasMethod($method)) {
-                                $this->routes[strtoupper($method)][$url] = $className;
+                                $this->routes[strtoupper($method)][$url] = $fqcn;
                             }
                         }
                     }
+                }
+                else {
+                    echo("class not found");
                 }
             }
             file_put_contents($this->cacheFile, serialize($this->routes));
